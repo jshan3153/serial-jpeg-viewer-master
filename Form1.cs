@@ -16,7 +16,7 @@ namespace SimpleSerial
         // Add this variable 
         string RxString , str;
         int is_receive_jpg;
-        int fps, picture = 0;
+        int fps, pictureNum = 0;
         byte[] buffer = new byte[1024*512];
         List<byte> bytes2 = new List<byte>();
         int filesize = 0, filelength = 0;
@@ -178,15 +178,15 @@ namespace SimpleSerial
                 if (filesize >= filelength){
                     Console.Write("rx:\r\n");
                     var ms = new MemoryStream(bytes2.ToArray());
-                    if (picture == 0)
+                    if (pictureNum == 0)
                     {
                         pictureBox1.Image = Image.FromStream(ms);
-                        picture = 1;
+                        pictureNum = 1;
                     }
                     else
                     {
                         pictureBox2.Image = Image.FromStream(ms);
-                        picture = 0;
+                        pictureNum = 0;
                     }
                     
                     is_receive_jpg = 0;
@@ -227,15 +227,15 @@ namespace SimpleSerial
                 }
 
                 var ms = new MemoryStream(bytes1.ToArray());
-                if(picture == 0)
+                if(pictureNum == 0)
                 {
                     pictureBox1.Image = Image.FromStream(ms);
-                    picture = 1;
+                    pictureNum = 1;
                 }
                 else
                 {
                     pictureBox2.Image = Image.FromStream(ms);
-                    picture = 0;
+                    pictureNum = 0;
                 }
                 
 
@@ -243,6 +243,26 @@ namespace SimpleSerial
                 fps++;
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(pictureBox1.Image != null)
+            {
+                pictureBox1.Image = null;
+            }
+            pictureNum = 0;
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (pictureBox2.Image != null)
+            {
+                pictureBox2.Image = null;
+            }
+            pictureNum = 1;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
