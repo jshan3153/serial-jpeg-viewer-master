@@ -39,14 +39,17 @@ namespace SimpleSerial
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(280, 2);
+            this.buttonStart.Location = new System.Drawing.Point(320, 2);
+            this.buttonStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(87, 21);
+            this.buttonStart.Size = new System.Drawing.Size(99, 26);
             this.buttonStart.TabIndex = 0;
             this.buttonStart.Text = "Open";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -55,9 +58,10 @@ namespace SimpleSerial
             // buttonStop
             // 
             this.buttonStop.Enabled = false;
-            this.buttonStop.Location = new System.Drawing.Point(373, 2);
+            this.buttonStop.Location = new System.Drawing.Point(426, 2);
+            this.buttonStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(87, 21);
+            this.buttonStop.Size = new System.Drawing.Size(99, 26);
             this.buttonStop.TabIndex = 1;
             this.buttonStop.Text = "Close";
             this.buttonStop.UseVisualStyleBackColor = true;
@@ -65,12 +69,13 @@ namespace SimpleSerial
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(8, 24);
+            this.textBox1.Location = new System.Drawing.Point(19, 524);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(527, 696);
+            this.textBox1.Size = new System.Drawing.Size(1286, 278);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -81,9 +86,10 @@ namespace SimpleSerial
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(541, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(19, 36);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(685, 696);
+            this.pictureBox1.Size = new System.Drawing.Size(640, 480);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -96,54 +102,68 @@ namespace SimpleSerial
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(476, 6);
+            this.label1.Location = new System.Drawing.Point(544, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 12);
+            this.label1.Size = new System.Drawing.Size(43, 15);
             this.label1.TabIndex = 4;
             this.label1.Text = "FPS=";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(516, 9);
+            this.label2.Location = new System.Drawing.Point(590, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 12);
+            this.label2.Size = new System.Drawing.Size(0, 15);
             this.label2.TabIndex = 5;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 3);
+            this.comboBox1.Location = new System.Drawing.Point(19, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.Size = new System.Drawing.Size(138, 23);
             this.comboBox1.TabIndex = 6;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(144, 3);
+            this.comboBox2.Location = new System.Drawing.Point(165, 4);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.Size = new System.Drawing.Size(138, 23);
             this.comboBox2.TabIndex = 7;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(665, 36);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(640, 480);
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1238, 732);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1310, 917);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonStart);
+            this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,6 +181,7 @@ namespace SimpleSerial
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

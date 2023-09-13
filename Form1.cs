@@ -14,10 +14,12 @@ namespace SimpleSerial
     public partial class Form1 : Form
     {
         // Add this variable 
-        string RxString;
+        string RxString , str;
         int is_receive_jpg;
-        int fps;
+        int fps, picture = 0;
         byte[] buffer = new byte[1024*512];
+        List<byte> bytes2 = new List<byte>();
+        int filesize = 0, filelength = 0;
         public Form1()
         {
             is_receive_jpg = 0;
@@ -94,23 +96,107 @@ namespace SimpleSerial
 
         private void DisplayText(object sender, EventArgs e)
         {
-            textBox1.AppendText(RxString+"\n");
+            textBox1.AppendText(str+"\n");
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            //if (is_receive_jpg != 1)
-            //{
-            //    RxString = serialPort1.ReadLine();
-            //    if (RxString.Contains("jpg"))
-            //    {
-            //        is_receive_jpg = 1;
-            //    }
-            //    this.Invoke(new EventHandler(DisplayText));
-            //}
-            //else
+            if (is_receive_jpg == 0)
+            {
+                RxString = serialPort1.ReadLine();
+                if (RxString.Contains("jpg"))
+                {
+                    is_receive_jpg = 3;
+                }
+                if (RxString.Contains("jpgF"))
+                {
+                    is_receive_jpg = 1;
+                }
+                str = RxString;
+                this.Invoke(new EventHandler(DisplayText));
+            }
+            else if(is_receive_jpg == 1)
+            {
+                //var str = "  10FFxxx";
+                string numericString = string.Empty;
+                str = serialPort1.ReadLine();
+                foreach (var c in str)
+                {
+                    // Check for numeric characters (hex in this case) or leading or trailing spaces.
+                    //if ((c >= '0' && c <= '9') || (char.ToUpperInvariant(c) >= 'A' && char.ToUpperInvariant(c) <= 'F') || c == ' ')
+                    //{
+                    //    numericString = string.Concat(numericString, c.ToString());
+                    //}
+                    if ((c >= '0' && c <= '9') || c == ' ' || c == '-')
+                    {
+                        numericString = string.Concat(numericString, c);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                //if (int.TryParse(numericString, System.Globalization.NumberStyles.HexNumber, null, out int i))
+                //{
+                //    Console.WriteLine($"'{str}' --> '{numericString}' --> {i}");
+                //}
+                if (int.TryParse(numericString, out int j))
+                {
+                    Console.WriteLine($"'{str}' --> '{numericString}' --> {j}");
+                    is_receive_jpg = 2;
+                    filelength = j;
+                }
+                this.Invoke(new EventHandler(DisplayText));
+            }
+            else if(is_receive_jpg == 2 )
             {//Now we will read the jpeg data
-#if _DEBUG_
+                int iRecSize = serialPort1.BytesToRead;
+
+                if (iRecSize != 0) // 수신된 데이터의 수가 0이 아닐때만 처리하자
+                {
+                    //          Console.Write("rx:" + iRecSize.ToString());
+
+                    byte[] buff = new byte[iRecSize];
+                    List<byte> bytes1 = new List<byte>();
+                    
+                    try
+                    {
+                        serialPort1.Read(buff, 0, iRecSize);
+
+                        bytes1 = buff.ToList();
+                        bytes2.AddRange(bytes1);
+                        filesize += iRecSize;
+                    }
+                    catch
+                    {
+                    }
+                }
+                //is_receive_jpg = 0;
+                fps++;
+                Console.Write("fps<{0}>", fps);
+                if (filesize >= filelength){
+                    Console.Write("rx:\r\n");
+                    var ms = new MemoryStream(bytes2.ToArray());
+                    if (picture == 0)
+                    {
+                        pictureBox1.Image = Image.FromStream(ms);
+                        picture = 1;
+                    }
+                    else
+                    {
+                        pictureBox2.Image = Image.FromStream(ms);
+                        picture = 0;
+                    }
+                    
+                    is_receive_jpg = 0;
+                    filesize = 0;
+                    filelength = 0;
+                    bytes2.Clear();
+                }
+            }
+            else if(is_receive_jpg == 3)
+            {
                 //'\n'까지 시리얼로부터 받아서 string에 저장
                 RxString = serialPort1.ReadLine();
                 //Console.Write(RxString);
@@ -141,35 +227,21 @@ namespace SimpleSerial
                 }
 
                 var ms = new MemoryStream(bytes1.ToArray());
-                pictureBox1.Image = Image.FromStream(ms);
-
-                is_receive_jpg = 0;
-                fps++;
-#endif
-                //RxString = serialPort1.ReadLine();
-                //byte[] bytes1 = Encoding.Default.GetBytes(RxString);
-                //var ms = new MemoryStream(bytes1);
-                //pictureBox1.Image = Image.FromStream(ms);
-
-                int iRecSize = serialPort1.BytesToRead;
-
-                if (iRecSize != 0) // 수신된 데이터의 수가 0이 아닐때만 처리하자
+                if(picture == 0)
                 {
-                    //          Console.Write("rx:" + iRecSize.ToString());
-
-                    byte[] buff = new byte[iRecSize];
-                    try
-                    {
-                        serialPort1.Read(buff, 0, iRecSize);
-
-                        bytes1.Add(buff.ToList());
-                    }
-                    catch
-                    {
-                    }
+                    pictureBox1.Image = Image.FromStream(ms);
+                    picture = 1;
                 }
+                else
+                {
+                    pictureBox2.Image = Image.FromStream(ms);
+                    picture = 0;
+                }
+                
+
                 is_receive_jpg = 0;
                 fps++;
+
             }
         }
 
