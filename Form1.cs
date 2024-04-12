@@ -96,7 +96,7 @@ namespace SimpleSerial
 
         private void DisplayText(object sender, EventArgs e)
         {
-            textBox1.AppendText(str+"\n");
+            textBox1.AppendText(str+"\r\n");
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -188,7 +188,8 @@ namespace SimpleSerial
                         pictureBox2.Image = Image.FromStream(ms);
                         pictureNum = 0;
                     }
-                    
+                    ChangeOutlineColor(pictureNum, false);
+
                     is_receive_jpg = 0;
                     filesize = 0;
                     filelength = 0;
@@ -252,7 +253,8 @@ namespace SimpleSerial
                 pictureBox1.Image = null;
             }
             pictureNum = 0;
-
+            // Set the outline color for pictureBox1
+            ChangeOutlineColor(pictureNum, true);
 
         }
 
@@ -263,6 +265,7 @@ namespace SimpleSerial
                 pictureBox2.Image = null;
             }
             pictureNum = 1;
+            ChangeOutlineColor(pictureNum, true);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -279,6 +282,47 @@ namespace SimpleSerial
         {
             label2.Text = fps.ToString();
             fps = 0;
+        }
+
+        private void ChangeOutlineColor(int imageNum, bool clear)
+        {
+            if (imageNum == 1)
+            {
+                ((ColoredPictureBox)pictureBox1).OutlineColor = Color.Red;
+                ((ColoredPictureBox)pictureBox2).OutlineColor = Color.White;
+            }
+            else
+            {
+                ((ColoredPictureBox)pictureBox1).OutlineColor = Color.White;
+                ((ColoredPictureBox)pictureBox2).OutlineColor = Color.Red;
+            }
+
+            if (clear)
+            {
+                ((ColoredPictureBox)pictureBox1).OutlineColor = Color.Green;
+                ((ColoredPictureBox)pictureBox2).OutlineColor = Color.Green;
+            }
+
+            if (pictureBox1.InvokeRequired)
+            {
+                pictureBox1.Invoke((MethodInvoker)delegate {
+                    pictureBox1.Refresh();
+                });
+            }
+            else
+            {
+                pictureBox1.Refresh();
+            }
+            if (pictureBox2.InvokeRequired)
+            {
+                pictureBox2.Invoke((MethodInvoker)delegate {
+                    pictureBox2.Refresh();
+                });
+            }
+            else
+            {
+                pictureBox2.Refresh();
+            }
         }
     }
 }

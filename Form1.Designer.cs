@@ -88,6 +88,7 @@ namespace SimpleSerial
             // 
             // pictureBox1
             // 
+            this.pictureBox1 = new ColoredPictureBox(); // Use ColoredPictureBox instead of PictureBox
             this.pictureBox1.Location = new System.Drawing.Point(19, 36);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox1.Name = "pictureBox1";
@@ -138,6 +139,7 @@ namespace SimpleSerial
             // 
             // pictureBox2
             // 
+            this.pictureBox2 = new ColoredPictureBox(); // Use ColoredPictureBox instead of PictureBox
             this.pictureBox2.Location = new System.Drawing.Point(19, 523);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(640, 480);
@@ -169,7 +171,7 @@ namespace SimpleSerial
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1310, 1055);
+            this.ClientSize = new System.Drawing.Size(1310, 1014);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
