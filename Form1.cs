@@ -32,6 +32,8 @@ namespace SimpleSerial
                 comboBox1.Items.Add(portnumber);          // 검색한 포트를 콤보박스에 입력. 
             }
 
+            comboBox1.SelectedIndex = 0;          // 검색한 포트를 콤보박스에 선택. 
+
         }
 
         private void buttonOpen_Click(object sender, EventArgs e)
