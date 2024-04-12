@@ -71,13 +71,13 @@ namespace SimpleSerial
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 524);
+            this.textBox1.Location = new System.Drawing.Point(666, 37);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(1286, 278);
+            this.textBox1.Size = new System.Drawing.Size(640, 966);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -138,7 +138,7 @@ namespace SimpleSerial
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(665, 36);
+            this.pictureBox2.Location = new System.Drawing.Point(19, 523);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(640, 480);
             this.pictureBox2.TabIndex = 8;
@@ -169,7 +169,7 @@ namespace SimpleSerial
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1310, 917);
+            this.ClientSize = new System.Drawing.Size(1310, 1055);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
